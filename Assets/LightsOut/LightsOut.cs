@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GridGameDevelopment;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -46,7 +47,7 @@ public class LightsOut : MonoBehaviour
                 _cells[r, c].LightsOutManager = this;
             }
         }
-        if (_timeText) _timeText.text = TimeFormat(_time);
+        if (_timeText) _timeText.text = Utility.TimeFormat(_time);
         if (_movesText) _movesText.text = _moves.ToString();
 
         RandomizeBoard();
@@ -59,7 +60,7 @@ public class LightsOut : MonoBehaviour
         if (_state == GameState.Game)
         {
             _time += Time.deltaTime;
-            if (_timeText) _timeText.text = TimeFormat(_time);
+            if (_timeText) _timeText.text = Utility.TimeFormat(_time);
         }
         else if (_state == GameState.Clear && Input.GetButtonDown("Jump"))
         {
@@ -148,14 +149,9 @@ public class LightsOut : MonoBehaviour
         }
         _time = 0;
         _moves = 0;
-        if (_timeText) _timeText.text = TimeFormat(_time);
+        if (_timeText) _timeText.text = Utility.TimeFormat(_time);
         if (_movesText) _movesText.text = _moves.ToString();
         RandomizeBoard();
         _state = GameState.Game;
     }
-
-    string TimeFormat(float time)
-    {
-        return $"{(int)time / 60:00}:{time % 60:00.00}";
-    } 
 }
