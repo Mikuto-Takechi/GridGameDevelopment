@@ -9,7 +9,7 @@ namespace LifeGame
         [SerializeField] private Gradient _deadGradient;
         [SerializeField] private Image _image = null;
         [SerializeField] private CellState _state = CellState.Dead;
-        private float _gradientStep;
+        private float _gradientStep = 1f;
         /// <param name="interval">0 ~ 1の範囲</param>
         public void FadeOut(float interval)
         {
@@ -21,11 +21,7 @@ namespace LifeGame
             _gradientStep = _gradientStep > 1 ? 1 : _gradientStep;
             _image.color = _deadGradient.Evaluate(_gradientStep); //Color.HSVToRGB(h, s, v);
         }
-        public Color Color
-        {
-            set => _image.color = value;
-            get => _image.color;
-        }
+        public float GradientStep { set => _gradientStep = value; }
         public CellState State
         {
             get => _state;

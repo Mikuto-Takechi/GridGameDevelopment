@@ -43,10 +43,10 @@ namespace LifeGame
                 var readLine = sr.ReadLine();
                 for (int j = 0; j < readLine.Length; j++)
                 {
-                    
                     if (readLine[j] == '0')
                     {   //  0なら死
                         _cells[i, j].State = CellState.Dead;
+                        _cells[i, j].GradientStep = 1f;
                     }
                     else if(readLine[j] == '1')
                     {   //  1なら生存
